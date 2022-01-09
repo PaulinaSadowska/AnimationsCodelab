@@ -186,36 +186,6 @@ private fun LazyListState.isScrollingUp(): Boolean {
     }.value
 }
 
-/**
- * Shows an indicator for the tab.
- *
- * @param tabPositions The list of [TabPosition]s from a [TabRow].
- * @param tabPage The [TabPage] that is currently selected.
- */
-@Composable
-fun HomeTabIndicator(
-        tabPositions: List<TabPosition>,
-        tabPage: TabPage
-) {
-    // TODO 4: Animate these value changes.
-    val indicatorLeft = tabPositions[tabPage.ordinal].left
-    val indicatorRight = tabPositions[tabPage.ordinal].right
-    val color = if (tabPage == TabPage.Home) Purple700 else Green800
-    Box(
-            Modifier
-                    .fillMaxSize()
-                    .wrapContentSize(align = Alignment.BottomStart)
-                    .offset(x = indicatorLeft)
-                    .width(indicatorRight - indicatorLeft)
-                    .padding(4.dp)
-                    .fillMaxSize()
-                    .border(
-                            BorderStroke(2.dp, color),
-                            RoundedCornerShape(4.dp)
-                    )
-    )
-}
-
 @Preview
 @Composable
 private fun PreviewHome() {

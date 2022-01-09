@@ -1,5 +1,6 @@
 package com.paulinasadowska.animationscodelab.ui.composables
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -23,11 +24,11 @@ fun TopicRow(topic: String, expanded: Boolean, onClick: () -> Unit) {
             elevation = 2.dp,
             onClick = onClick
     ) {
-        // TODO 3: Animate the size change of the content.
         Column(
                 modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp)
+                        .animateContentSize()
         ) {
             Row {
                 Icon(
