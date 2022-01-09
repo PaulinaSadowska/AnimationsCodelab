@@ -1,5 +1,6 @@
 package com.paulinasadowska.animationscodelab.ui.composables
 
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -74,21 +75,20 @@ fun Home() {
 
     val lazyListState = rememberLazyListState()
 
-    // The background color. The value is changed by the current tab.
-    // TODO 1: Animate this color change.
     val backgroundColor = if (tabPage == TabPage.Home) Purple100 else Green300
+    val animatedBackgroundColor by animateColorAsState(targetValue = backgroundColor)
 
     // The coroutine scope for event handlers calling suspend functions.
     val coroutineScope = rememberCoroutineScope()
     Scaffold(
             topBar = {
                 HomeTabBar(
-                        backgroundColor = backgroundColor,
+                        backgroundColor = animatedBackgroundColor,
                         tabPage = tabPage,
                         onTabSelected = { tabPage = it }
                 )
             },
-            backgroundColor = backgroundColor,
+            backgroundColor = animatedBackgroundColor,
             floatingActionButton = {
                 HomeFloatingActionButton(
                         extended = lazyListState.isScrollingUp(),

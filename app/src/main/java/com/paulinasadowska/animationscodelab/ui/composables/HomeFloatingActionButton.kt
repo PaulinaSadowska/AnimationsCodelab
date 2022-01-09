@@ -1,5 +1,6 @@
 package com.paulinasadowska.animationscodelab.ui.composables
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -32,9 +33,7 @@ fun HomeFloatingActionButton(
                     imageVector = Icons.Default.Edit,
                     contentDescription = null
             )
-            // Toggle the visibility of the content with animation.
-            // TODO 2-1: Animate this visibility change.
-            if (extended) {
+            AnimatedVisibility(extended) {
                 Text(
                         text = stringResource(R.string.edit),
                         modifier = Modifier
