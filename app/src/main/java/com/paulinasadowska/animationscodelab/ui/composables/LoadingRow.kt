@@ -1,9 +1,11 @@
 package com.paulinasadowska.animationscodelab.ui.composables
 
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -14,8 +16,18 @@ import com.paulinasadowska.animationscodelab.ui.theme.AnimationsCodelabTheme
 
 @Composable
 fun LoadingRow() {
-    // TODO 5: Animate this value between 0f and 1f, then back to 0f repeatedly.
-    val alpha = 1f
+    val infiniteTransition = rememberInfiniteTransition()
+    val alpha by infiniteTransition.animateFloat(
+            initialValue = 0f,
+            targetValue = 1f,
+            animationSpec = infiniteRepeatable(
+                    animation = keyframes {
+                        durationMillis = 1000
+                        0f at 500
+                    },
+                    repeatMode = RepeatMode.Reverse
+            )
+    )
     Row(
             modifier = Modifier
                     .heightIn(min = 64.dp)
